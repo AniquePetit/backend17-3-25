@@ -1,0 +1,39 @@
+{
+  "reviews": [
+    {
+      "id": "g7890123-45cd-ef01-2345-6789abcdef01",
+      "userId": "a1234567-89ab-cdef-0123-456789abcdef",
+      "propertyId": "g9012345-67ef-0123-4567-89abcdef0123",
+      "rating": 5,
+      "comment": "The property was amazing, and the host was very accommodating!"
+    },
+    {
+      "id": "h8901234-56de-f012-3456-789abcdef012",
+      "userId": "b2345678-90cd-ef01-2345-6789abcdef01",
+      "propertyId": "k3456789-01f2-3456-789a-bcdef0123456",
+      "rating": 4,
+      "comment": "Lovely place, but the WiFi was a bit slow."
+    },
+    {
+      "id": "i9012345-67ef-0123-4567-89abcdef0123",
+      "userId": "c3456789-01de-f012-3456-789abcdef012",
+      "propertyId": "k3456789-01f2-3456-789a-bcdef0123456",
+      "rating": 3,
+      "comment": "Decent place for the price. Would visit again."
+    },
+    {
+      "id": "j0123456-78f0-1234-5678-9abcdef01234",
+      "userId": "d4567890-12ef-0123-4567-89abcdef0123",
+      "propertyId": "j2345678-90f1-2345-6789-abcdef012345",
+      "rating": 4,
+      "comment": "Beautiful view! However, there were some minor issues with the bathroom."
+    },
+    {
+      "id": "k1234567-89f0-1234-5678-9abcdef01234",
+      "userId": "e5678901-23f0-1234-5678-9abcdef01234",
+      "propertyId": "j2345678-90f1-2345-6789-abcdef012345",
+      "rating": 5,
+      "comment": "A perfect stay! Can't wait to come back."
+    }
+  ]
+}

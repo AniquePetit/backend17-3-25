@@ -1,0 +1,54 @@
+{
+  "hosts": [
+    {
+      "id": "f1234567-89ab-cdef-0123-456789abcdef",
+      "username": "johnDoe",
+      "password": "johnDoe123",
+      "name": "John Doe",
+      "email": "johndoe@email.com",
+      "phoneNumber": "+11234567890",
+      "profilePicture": "https://example.com/images/johndoe.jpg",
+      "aboutMe": "I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!"
+    },
+    {
+      "id": "e2345678-90bc-def0-0123-456789abcdef",
+      "username": "lindaSmith",
+      "password": "lindaS123",
+      "name": "Linda Smith",
+      "email": "lindasmith@email.com",
+      "phoneNumber": "+12234567891",
+      "profilePicture": "https://example.com/images/lindasmith.jpg",
+      "aboutMe": "A professional chef and a part-time host. I love curating unique experiences for my guests."
+    },
+    {
+      "id": "d3456789-01cd-def0-1234-56789abcdef0",
+      "username": "mikeBrown",
+      "password": "mikeB2023",
+      "name": "Mike Brown",
+      "email": "mikebrown@email.com",
+      "phoneNumber": "+13234567892",
+      "profilePicture": "https://example.com/images/mikebrown.jpg",
+      "aboutMe": "Nature enthusiast, hiker, and a lover of arts. My home reflects my passions. Stay and enjoy!"
+    },
+    {
+      "id": "c4567890-12de-f012-3456-789abcdef012",
+      "username": "sarahLee",
+      "password": "sarahL456",
+      "name": "Sarah Lee",
+      "email": "sarahlee@email.com",
+      "phoneNumber": "+14234567893",
+      "profilePicture": "https://example.com/images/sarahlee.jpg",
+      "aboutMe": "Travel blogger turned host. My home is filled with artifacts from around the world. Feel the global vibe!"
+    },
+    {
+      "id": "b5678901-23ef-0123-4567-89abcdef0123",
+      "username": "paulGreen",
+      "password": "greenP789",
+      "name": "Paul Green",
+      "email": "paulgreen@email.com",
+      "phoneNumber": "+15234567894",
+      "profilePicture": "https://example.com/images/paulgreen.jpg",
+      "aboutMe": "Engineer by profession, passionate about history. Stay in my vintage-themed home and relive the past."
+    }
+  ]
+}

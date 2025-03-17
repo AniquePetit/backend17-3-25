@@ -1,0 +1,64 @@
+{
+  "properties": [
+    {
+      "id": "g9012345-67ef-0123-4567-89abcdef0123",
+      "title": "Cozy Mountain Retreat",
+      "description": "Experience tranquility in our cozy cabin situated on a serene mountain peak.",
+      "location": "Rocky Mountains, Colorado",
+      "pricePerNight": 120.5,
+      "bedroomCount": 3,
+      "bathRoomCount": 2,
+      "maxGuestCount": 5,
+      "hostId": "f1234567-89ab-cdef-0123-456789abcdef",
+      "rating": 5
+    },
+    {
+      "id": "h0123456-78f0-1234-5678-9abcdef01234",
+      "title": "Modern City Apartment",
+      "description": "Stay in our sleek and modern apartment right in the heart of the city.",
+      "location": "New York, NY",
+      "pricePerNight": 150.75,
+      "bedroomCount": 2,
+      "bathRoomCount": 2,
+      "maxGuestCount": 4,
+      "hostId": "e2345678-90bc-def0-0123-456789abcdef",
+      "rating": 4
+    },
+    {
+      "id": "i1234567-89f0-1234-5678-9abcdef01234",
+      "title": "Lakeside Cottage",
+      "description": "Unwind by the lake in our rustic cottage, perfect for weekend getaways.",
+      "location": "Lake Tahoe, California",
+      "pricePerNight": 95.0,
+      "bedroomCount": 1,
+      "bathRoomCount": 1,
+      "maxGuestCount": 3,
+      "hostId": "d3456789-01cd-def0-1234-56789abcdef0",
+      "rating": 5
+    },
+    {
+      "id": "j2345678-90f1-2345-6789-abcdef012345",
+      "title": "Beachfront Villa",
+      "description": "Experience paradise in our luxurious villa right on the beach.",
+      "location": "Malibu, California",
+      "pricePerNight": 310.25,
+      "bedroomCount": 4,
+      "bathRoomCount": 3,
+      "maxGuestCount": 8,
+      "hostId": "c4567890-12de-f012-3456-789abcdef012",
+      "rating": 5
+    },
+    {
+      "id": "k3456789-01f2-3456-789a-bcdef0123456",
+      "title": "Country Farmhouse",
+      "description": "Step back in time and enjoy the simple pleasures of our traditional farmhouse.",
+      "location": "Nashville, Tennessee",
+      "pricePerNight": 85.0,
+      "bedroomCount": 3,
+      "bathRoomCount": 2,
+      "maxGuestCount": 6,
+      "hostId": "b5678901-23ef-0123-4567-89abcdef0123",
+      "rating": 4
+    }
+  ]
+}

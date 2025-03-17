@@ -1,0 +1,3987 @@
+{
+  "info": {
+    "_postman_id": "2ac98a5d-12d6-4bef-8077-94a5b56941e9",
+    "name": "Bookings API",
+    "description": "RESTful API for an online booking app using Express.js and Prisma",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_uid": "17255397-2ac98a5d-12d6-4bef-8077-94a5b56941e9"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{userId}",
+          "item": [
+            {
+              "name": "Get user by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ba89369d-8a81-4dd2-a922-5ebaaaa1df1c",
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Id should be a non-empty string\", function () {",
+                      "  const responseData = pm.response.json();",
+                      "  ",
+                      "  pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should not be empty\");",
+                      "});",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "c526350f-0ee3-4cbd-b6eb-dc77b177efee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", ":userId"],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": "e5678901-23f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b8fb7ba2-cd0b-4fcd-a14b-194724f6b2d1",
+                  "name": "Successful retrieval of user",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "d4567890-12ef-0123-4567-89abcdef0123",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"username\": \"jdoe\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"phoneNumber\": \"123-456-7890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\"\n}"
+                },
+                {
+                  "id": "dd48b49d-ace2-4bc0-9192-beb76c658854",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Update user by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "3532740a-600f-46b4-9828-9d31a6b65c38",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "af1310e5-65e0-4de9-83d1-95f5710a8ee9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jdoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@example.com\",\n  \"phoneNumber\": \"987-654-3210\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", ":userId"],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": "e5678901-23f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f33abd95-8b58-435e-9f11-d251136de9c4",
+                  "name": "User updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@example.com\",\n  \"phoneNumber\": \"987-654-3210\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "a1234567-89ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "272e9105-be2d-4f13-8838-743b68c722e3",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@example.com\",\n  \"phoneNumber\": \"987-654-3210\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "a1234567-89ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "b9eb0f10-a5ba-4f59-afa4-90cb42695a16",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@example.com\",\n  \"phoneNumber\": \"987-654-3210\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "a1234567-89ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Delete user by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "cb225fee-834a-40a6-8a15-e687cd6d292b",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "8dae4dc0-3ae6-44d9-b3fc-3875baef0bb8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", ":userId"],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": "e5678901-23f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a7860b6f-0cd7-471e-a489-763bfed1c8ec",
+                  "name": "User deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "c3456789-01de-f012-3456-789abcdef012",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "e6889096-3435-4914-8e4f-65c4ae2cec63",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["users", ":userId"],
+                      "variable": [
+                        {
+                          "key": "userId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "abe38b42-b9c7-47bd-bc49-89d315821900"
+        },
+        {
+          "name": "Get all users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b2096e57-adec-44ad-acd8-14f892e01645",
+                "exec": [
+                  "",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response is an array\", function () {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "fb7e46ca-e72e-4ea2-8b64-3abe0d30eba4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          },
+          "response": [
+            {
+              "id": "73495c86-6b94-49f9-b5e1-8d4bf2e3bec9",
+              "name": "Successful retrieval of users",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n    \"username\": \"jdoe\",\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"phoneNumber\": \"123-456-7890\",\n    \"profilePicture\": \"https://example.com/images/johndoe.jpg\"\n  },\n  {\n    \"id\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n    \"username\": \"jdoe\",\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"phoneNumber\": \"123-456-7890\",\n    \"profilePicture\": \"https://example.com/images/johndoe.jpg\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a2b40b86-7cc4-445f-8f25-4296928bb42c",
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "0bc2ba00-d5d1-436a-8624-c1c92eafc552",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"Alex\",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"phoneNumber\": \"123-456-7890\",\n  \"profilePicture\": \"https://global-uploads.webflow.com/5eecfecbe625d195e35b89f2/624bfb093da7d92733c001c0_Ignacio%20Villafruela%20Rodr%C3%ADguez.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          },
+          "response": [
+            {
+              "id": "9b43e644-fec5-4059-a82d-9690c8ff089f",
+              "name": "User created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jdoe\",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"phoneNumber\": \"123-456-7890\",\n  \"profilePicture\": \"https://global-uploads.webflow.com/5eecfecbe625d195e35b89f2/624bfb093da7d92733c001c0_Ignacio%20Villafruela%20Rodr%C3%ADguez.jpg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "id": "7276997f-b360-47ef-8571-834ae7a15a92"
+    },
+    {
+      "name": "hosts",
+      "item": [
+        {
+          "name": "{hostId}",
+          "item": [
+            {
+              "name": "Get host by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "cc7f4d1b-c384-431b-99ac-359635bef522",
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function () {",
+                      "    pm.expect(pm.response.code).to.equal(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"ID is a non-empty string\", function () {",
+                      "  const responseData = pm.response.json();",
+                      "",
+                      "  pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"ID should not be empty\");",
+                      "});",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "6972ae38-53d6-4f75-afd5-e7a1d139d3ec",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts/:hostId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["hosts", ":hostId"],
+                  "variable": [
+                    {
+                      "key": "hostId",
+                      "value": "e2345678-90bc-def0-0123-456789abcdef",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b5db410d-3a7e-4577-9814-82e5e5bce491",
+                  "name": "Successful retrieval of host",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n  \"username\": \"johnDoe\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}"
+                },
+                {
+                  "id": "372b4912-09ef-4728-b69f-0593c408f3ed",
+                  "name": "Host not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Update host by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "bbed6f2a-f8af-4833-aef2-45d0fa7cab58",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "fa86ffe8-4e91-439b-a5e3-1d7130c79a6d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"johnDoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"Updated bio for John Doe\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/hosts/:hostId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["hosts", ":hostId"],
+                  "variable": [
+                    {
+                      "key": "hostId",
+                      "value": "e2345678-90bc-def0-0123-456789abcdef",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1e234916-55c4-44a1-9d42-4f45c653454f",
+                  "name": "Host updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"johnDoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"Updated bio for John Doe\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "19f1e878-be23-4478-832f-84460976dda6",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"johnDoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"Updated bio for John Doe\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "252957ba-8ced-4833-bd5b-6b357abd6e2a",
+                  "name": "Host not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"johnDoe_updated\",\n  \"name\": \"John Doe Updated\",\n  \"email\": \"updatedjohndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://updated-example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"Updated bio for John Doe\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Delete host by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "48bbf05e-e16b-4012-ad6c-c88117041a37",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "381e0e1d-f11b-4bee-a7c2-cbd6133730c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts/:hostId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["hosts", ":hostId"],
+                  "variable": [
+                    {
+                      "key": "hostId",
+                      "value": "e2345678-90bc-def0-0123-456789abcdef",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "62dae38d-3646-40d3-bce0-ba6cc06ab0d4",
+                  "name": "Host deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "642277c6-e45e-4a7a-8e86-1f571f47d221",
+                  "name": "Host not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["hosts", ":hostId"],
+                      "variable": [
+                        {
+                          "key": "hostId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "c0f7fd24-2b84-4a5d-936f-ba7d139ff590"
+        },
+        {
+          "name": "Get all hosts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1131ab48-9c1a-4a7a-a1d5-71919ea4d2f5",
+                "exec": [
+                  "",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response body is an array\", function () {",
+                  "  pm.expect(pm.response.json()).to.be.an('array');",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "b8e07f4c-d3e0-4de3-b9f0-e2cd817e0068",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/hosts",
+              "host": ["{{baseUrl}}"],
+              "path": ["hosts"]
+            }
+          },
+          "response": [
+            {
+              "id": "65599ed5-d7d1-448b-a6b0-036b48abfcec",
+              "name": "Successful retrieval of hosts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["hosts"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n    \"username\": \"johnDoe\",\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@email.com\",\n    \"phoneNumber\": \"+11234567890\",\n    \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n    \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n  },\n  {\n    \"id\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n    \"username\": \"johnDoe\",\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@email.com\",\n    \"phoneNumber\": \"+11234567890\",\n    \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n    \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new host",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bc80d5fd-8774-4677-895f-9cc0c694126d",
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "9deed9bc-99f1-41da-b017-51c6b2698478",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newhosty \",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hosts",
+              "host": ["{{baseUrl}}"],
+              "path": ["hosts"]
+            }
+          },
+          "response": [
+            {
+              "id": "cdbb2dad-2094-4632-ac97-478bc490709c",
+              "name": "Host created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"johnDoe\",\n  \"password\": \"johnDoe123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/hosts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["hosts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "id": "87132fd1-f868-4712-9641-0410d9b3b01c"
+    },
+    {
+      "name": "properties",
+      "item": [
+        {
+          "name": "{propertyId}",
+          "item": [
+            {
+              "name": "Get property by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "54ab2f8f-0401-45c8-918f-2d6c31ca2c61",
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Id should be a non-empty string\", function () {",
+                      "  const responseData = pm.response.json();",
+                      "  ",
+                      "  pm.expect(responseData).to.be.an('object');",
+                      "  pm.expect(responseData.id).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                      "});",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "ba81bce4-e45f-495f-94fa-48b454ff6cb6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/properties/:propertyId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["properties", ":propertyId"],
+                  "variable": [
+                    {
+                      "key": "propertyId",
+                      "value": "i1234567-89f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7e5c5f85-2e06-4141-919e-61a238ac8600",
+                  "name": "Successful retrieval of property",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"g9012345-67ef-0123-4567-89abcdef0123\",\n  \"title\": \"Cozy Mountain Retreat\",\n  \"description\": \"Experience tranquility in our cozy cabin situated on a serene mountain peak.\",\n  \"location\": \"Rocky Mountains, Colorado\",\n  \"pricePerNight\": 120.5,\n  \"bedroomCount\": 3,\n  \"bathRoomCount\": 2,\n  \"maxGuestCount\": 5,\n  \"hostId\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n  \"rating\": 5\n}"
+                },
+                {
+                  "id": "5e5f2dec-6a0b-421e-9607-a4d6e246771b",
+                  "name": "Property not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Update property by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "fcec18dc-e1f3-4606-9dc6-c4aedf676c46",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "bb5cc6c2-3a62-4864-93f1-90c2628fb77b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Updated Cozy Mountain Retreat\",\n  \"description\": \"Updated description for the cozy mountain retreat.\",\n  \"location\": \"Updated Location\",\n  \"pricePerNight\": 150.5,\n  \"bedroomCount\": 4,\n  \"bathRoomCount\": 3,\n  \"maxGuestCount\": 6,\n  \"rating\": 4.5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/properties/:propertyId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["properties", ":propertyId"],
+                  "variable": [
+                    {
+                      "key": "propertyId",
+                      "value": "i1234567-89f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9e5e123c-6f17-43be-83de-3d2063d34eca",
+                  "name": "Property updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Updated Cozy Mountain Retreat\",\n  \"description\": \"Updated description for the cozy mountain retreat.\",\n  \"location\": \"Updated Location\",\n  \"pricePerNight\": 150.5,\n  \"bedroomCount\": 4,\n  \"bathRoomCount\": 3,\n  \"maxGuestCount\": 6,\n  \"rating\": 4.5\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "83314e2a-5bd9-4a3a-998c-25214170e89d",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Updated Cozy Mountain Retreat\",\n  \"description\": \"Updated description for the cozy mountain retreat.\",\n  \"location\": \"Updated Location\",\n  \"pricePerNight\": 150.5,\n  \"bedroomCount\": 4,\n  \"bathRoomCount\": 3,\n  \"maxGuestCount\": 6,\n  \"rating\": 4.5\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "858212dd-6b22-4bbf-8f3a-6b5ba443d9ec",
+                  "name": "Property not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Updated Cozy Mountain Retreat\",\n  \"description\": \"Updated description for the cozy mountain retreat.\",\n  \"location\": \"Updated Location\",\n  \"pricePerNight\": 150.5,\n  \"bedroomCount\": 4,\n  \"bathRoomCount\": 3,\n  \"maxGuestCount\": 6,\n  \"rating\": 4.5\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Delete property by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "85df5526-764e-4b85-a83b-6c5a350b65d0",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "db6086ad-77aa-42a9-85e5-8927d40577da",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/properties/:propertyId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["properties", ":propertyId"],
+                  "variable": [
+                    {
+                      "key": "propertyId",
+                      "value": "i1234567-89f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b5324c42-0110-41da-a1ec-6cbd4b5c026d",
+                  "name": "Property deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "0cbb2f0b-19f3-4a97-9a5a-6c087f55bb34",
+                  "name": "Property not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/properties/:propertyId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["properties", ":propertyId"],
+                      "variable": [
+                        {
+                          "key": "propertyId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "f2e0336d-13a5-435c-891b-fa55360fc2c6"
+        },
+        {
+          "name": "Get all properties",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "168281a2-5d01-436d-bdfc-7d606a30dff8",
+                "exec": [
+                  "",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response is an array with at least one element\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"maxGuestCount is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData).to.be.an('array');",
+                  "    responseData.forEach(function(property) {",
+                  "        pm.expect(property.maxGuestCount).to.be.a('number').and.to.satisfy(function(value) {",
+                  "            return value >= 0;",
+                  "        }, \"maxGuestCount should be a non-negative integer\");",
+                  "    });",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "33d9d93e-8137-4162-8c57-1fb3add80f91",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/properties",
+              "host": ["{{baseUrl}}"],
+              "path": ["properties"]
+            }
+          },
+          "response": [
+            {
+              "id": "827b253c-5b45-47b2-a7eb-08790ad84588",
+              "name": "Successful retrieval of properties",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/properties",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["properties"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"g9012345-67ef-0123-4567-89abcdef0123\",\n    \"title\": \"Cozy Mountain Retreat\",\n    \"description\": \"Experience tranquility in our cozy cabin situated on a serene mountain peak.\",\n    \"location\": \"Rocky Mountains, Colorado\",\n    \"pricePerNight\": 120.5,\n    \"bedroomCount\": 3,\n    \"bathRoomCount\": 2,\n    \"maxGuestCount\": 5,\n    \"hostId\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n    \"rating\": 5\n  },\n  {\n    \"id\": \"g9012345-67ef-0123-4567-89abcdef0123\",\n    \"title\": \"Cozy Mountain Retreat\",\n    \"description\": \"Experience tranquility in our cozy cabin situated on a serene mountain peak.\",\n    \"location\": \"Rocky Mountains, Colorado\",\n    \"pricePerNight\": 120.5,\n    \"bedroomCount\": 3,\n    \"bathRoomCount\": 2,\n    \"maxGuestCount\": 5,\n    \"hostId\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n    \"rating\": 5\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new property",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1ed90801-cf91-4a76-993b-17d3cafa0135",
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "16f77ade-3d30-42e2-8449-07ff2aea31c5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Cozy Mountain Retreat\",\n  \"description\": \"Experience tranquility in our cozy cabin situated on a serene mountain peak.\",\n  \"location\": \"Rocky Mountains, Colorado\",\n  \"pricePerNight\": 120.5,\n  \"bedroomCount\": 3,\n  \"bathRoomCount\": 2,\n  \"maxGuestCount\": 5,\n  \"hostId\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n  \"rating\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/properties",
+              "host": ["{{baseUrl}}"],
+              "path": ["properties"]
+            }
+          },
+          "response": [
+            {
+              "id": "575f33f1-ac85-4c2f-94b6-958232815c3d",
+              "name": "Property created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Cozy Mountain Retreat\",\n  \"description\": \"Experience tranquility in our cozy cabin situated on a serene mountain peak.\",\n  \"location\": \"Rocky Mountains, Colorado\",\n  \"pricePerNight\": 120.5,\n  \"bedroomCount\": 3,\n  \"bathRoomCount\": 2,\n  \"maxGuestCount\": 5,\n  \"hostId\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n  \"rating\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/properties",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["properties"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "id": "100222e9-9c32-4bba-964d-9bfc9dbf3cd9"
+    },
+    {
+      "name": "amenities",
+      "item": [
+        {
+          "name": "{amenityId}",
+          "item": [
+            {
+              "name": "Get amenity by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c7ee129b-7a88-4b2a-8e35-7560b364d8b0",
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Response has the required fields - id and name\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData).to.be.an('object');",
+                      "    pm.expect(responseData.id).to.exist.and.to.be.a('string');",
+                      "    pm.expect(responseData.name).to.exist.and.to.be.a('string');",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"id is a non-empty string\", function () {",
+                      "  const responseData = pm.response.json();",
+                      "  ",
+                      "  pm.expect(responseData).to.be.an('object');",
+                      "  pm.expect(responseData.id).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Name should be a non-empty string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "    ",
+                      "    pm.expect(responseData.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "327ca05e-bff2-4d8a-a25c-b1630cbb2f85",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/amenities/:amenityId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["amenities", ":amenityId"],
+                  "variable": [
+                    {
+                      "key": "amenityId",
+                      "value": "u3456789-01rs-tuvw-01cd-ef0123456789",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "802320f9-b7f5-42e8-9ae0-b4f7f45aabd5",
+                  "name": "Successful retrieval of amenity",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"l4567890-12gh-ijkl-1234-56789abcdef0\",\n  \"name\": \"Wifi\"\n}"
+                },
+                {
+                  "id": "46c8f4b5-cee3-49b6-808a-7586283b7035",
+                  "name": "Amenity not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Update amenity by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "341958f2-23d8-43b8-9433-8da5663896a3",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "aafc660a-75a4-401f-bbe3-7eac639e284c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Wifi\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/amenities/:amenityId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["amenities", ":amenityId"],
+                  "variable": [
+                    {
+                      "key": "amenityId",
+                      "value": "u3456789-01rs-tuvw-01cd-ef0123456789",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7a9d9576-9fc7-4d6f-8b79-a4cd7dbd5d6a",
+                  "name": "Amenity updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Updated Wifi\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "51904465-d8b7-43c9-a822-196a0948d8b1",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Updated Wifi\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "57bc8b19-7039-4ccb-bb25-d088d2d7ebc8",
+                  "name": "Amenity not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Updated Wifi\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Delete amenity by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "cf5e1004-70ef-4e33-8c88-2b937e0e4d21",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "8860f491-a718-41ab-89c4-f5c4754986cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/amenities/:amenityId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["amenities", ":amenityId"],
+                  "variable": [
+                    {
+                      "key": "amenityId",
+                      "value": "u3456789-01rs-tuvw-01cd-ef0123456789",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9ce7418e-9c83-49d2-ac0f-5f7198327756",
+                  "name": "Amenity deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "ebdc0111-13b9-46f9-980b-82be849bbb5c",
+                  "name": "Amenity not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/amenities/:amenityId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["amenities", ":amenityId"],
+                      "variable": [
+                        {
+                          "key": "amenityId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "be8a1d81-3fe9-4778-8a1f-4c897dae4aa0"
+        },
+        {
+          "name": "Get all amenities",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3bf52c13-9aee-43f8-818f-8967581ca214",
+                "exec": [
+                  "",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response is an array with at least one element\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('array');",
+                  "  pm.expect(responseData).to.have.lengthOf.at.least(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Each element in the response has the required fields - id and name\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('array');",
+                  "    ",
+                  "    responseData.forEach(function(element){",
+                  "        pm.expect(element).to.be.an('object');",
+                  "        pm.expect(element.id).to.exist.and.to.be.a('string');",
+                  "        pm.expect(element.name).to.exist.and.to.be.a('string');",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"The id must be a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('array');",
+                  "  ",
+                  "  responseData.forEach(function (item) {",
+                  "    pm.expect(item.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Name is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+                  "    responseData.forEach(function (amenity) {",
+                  "        pm.expect(amenity.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+                  "    });",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "d36e1f81-6668-4011-b075-88758e0240ad",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/amenities",
+              "host": ["{{baseUrl}}"],
+              "path": ["amenities"]
+            }
+          },
+          "response": [
+            {
+              "id": "ab7b22ae-c719-4a5e-a061-a9fc07ab464c",
+              "name": "Successful retrieval of amenities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/amenities",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["amenities"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"l4567890-12gh-ijkl-1234-56789abcdef0\",\n    \"name\": \"Wifi\"\n  },\n  {\n    \"id\": \"l4567890-12gh-ijkl-1234-56789abcdef0\",\n    \"name\": \"Wifi\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new amenity",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f11f88c2-a9b8-465b-bc62-e0bc2c8027ca",
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "c96a497d-838c-4993-b371-14532bacdeac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Wifi\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/amenities",
+              "host": ["{{baseUrl}}"],
+              "path": ["amenities"]
+            }
+          },
+          "response": [
+            {
+              "id": "42713883-af91-48f1-911b-74ad24d1a1f9",
+              "name": "Amenity created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Wifi\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/amenities",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["amenities"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "id": "9bb78ad5-a33d-4a3c-bef0-b8d3a6ce371a"
+    },
+    {
+      "name": "bookings",
+      "item": [
+        {
+          "name": "{bookingId}",
+          "item": [
+            {
+              "name": "Get booking by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa1d70a8-dea4-4f1d-893f-64aaecc05fc0",
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Id should be a non-empty string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "    ",
+                      "    pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"userId is a non-empty string\", function () {",
+                      "  const responseData = pm.response.json();",
+                      "  ",
+                      "  pm.expect(responseData.userId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"userId should not be empty\");",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"propertyId should be a non-empty string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData.propertyId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                      "});",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "6a473867-dee8-43a5-87d6-58e56079e44c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:bookingId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings", ":bookingId"],
+                  "variable": [
+                    {
+                      "key": "bookingId",
+                      "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5c545a0f-5f19-4b26-a5ad-71c7652ba89f",
+                  "name": "Successful retrieval of booking",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"f0123456-78ab-cdef-0123-456789abcdef\",\n  \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n  \"checkinDate\": \"2023-03-10T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-15T10:00:00.000Z\",\n  \"numberOfGuests\": 2,\n  \"totalPrice\": 150.25,\n  \"bookingStatus\": \"confirmed\"\n}"
+                },
+                {
+                  "id": "c8a42270-b880-48b8-ba31-2b43685eba5b",
+                  "name": "Booking not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Update booking by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "2c7109f9-1190-4d9f-ab18-1bfff9c1a81a",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "adae7130-6027-49a9-a2e4-9e331873dcb1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"checkinDate\": \"2023-03-11T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-16T10:00:00.000Z\",\n  \"numberOfGuests\": 3,\n  \"totalPrice\": 200.75,\n  \"bookingStatus\": \"updated\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:bookingId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings", ":bookingId"],
+                  "variable": [
+                    {
+                      "key": "bookingId",
+                      "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6a29586d-7c81-43d3-a996-39c59941365d",
+                  "name": "Booking updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"checkinDate\": \"2023-03-11T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-16T10:00:00.000Z\",\n  \"numberOfGuests\": 3,\n  \"totalPrice\": 200.75,\n  \"bookingStatus\": \"updated\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "561ce292-14ab-467d-b4d2-d5bc6d39a056",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"checkinDate\": \"2023-03-11T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-16T10:00:00.000Z\",\n  \"numberOfGuests\": 3,\n  \"totalPrice\": 200.75,\n  \"bookingStatus\": \"updated\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "5e5f351b-0a58-47d1-b4ce-afb72feb8ca2",
+                  "name": "Booking not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"checkinDate\": \"2023-03-11T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-16T10:00:00.000Z\",\n  \"numberOfGuests\": 3,\n  \"totalPrice\": 200.75,\n  \"bookingStatus\": \"updated\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Delete booking by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "fbda1f2f-3433-49a6-8270-902f084ba263",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "8aa6a27d-f606-4ae6-bc9b-13038ea62424",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:bookingId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings", ":bookingId"],
+                  "variable": [
+                    {
+                      "key": "bookingId",
+                      "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a8748843-68ee-45f2-8ff0-2f943afe79c5",
+                  "name": "Booking deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "5123ad0d-12d7-41df-a4c2-59aa734491cd",
+                  "name": "Booking not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["bookings", ":bookingId"],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "f9f28acd-487c-4f25-8b03-3df552cf5247"
+        },
+        {
+          "name": "Get all bookings",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5063f3d4-688f-444b-83ba-214a299be9d0",
+                "exec": [
+                  "",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response is an array\", function () {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Id should be a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "",
+                  "    pm.expect(responseData).to.be.an('array');",
+                  "    ",
+                  "    responseData.forEach(function (booking) {",
+                  "        pm.expect(booking.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should not be empty\");",
+                  "    });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"userId is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('array');",
+                  "    responseData.forEach(function (booking) {",
+                  "        pm.expect(booking.userId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                  "    });",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "50fbcf60-eddc-4427-8a4f-9916dbd1ad9d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings"]
+            }
+          },
+          "response": [
+            {
+              "id": "e0fb97ef-98db-4ce8-b2ff-10ec8a2b5ebe",
+              "name": "Successful retrieval of bookings",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"f0123456-78ab-cdef-0123-456789abcdef\",\n    \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n    \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n    \"checkinDate\": \"2023-03-10T18:00:00.000Z\",\n    \"checkoutDate\": \"2023-03-15T10:00:00.000Z\",\n    \"numberOfGuests\": 2,\n    \"totalPrice\": 150.25,\n    \"bookingStatus\": \"confirmed\"\n  },\n  {\n    \"id\": \"f0123456-78ab-cdef-0123-456789abcdef\",\n    \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n    \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n    \"checkinDate\": \"2023-03-10T18:00:00.000Z\",\n    \"checkoutDate\": \"2023-03-15T10:00:00.000Z\",\n    \"numberOfGuests\": 2,\n    \"totalPrice\": 150.25,\n    \"bookingStatus\": \"confirmed\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new booking",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1f084f3f-f50c-4c7b-a64e-82f7b99893b0",
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "4a3b1815-fc50-4fc8-b42f-2f3c5b03f34b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n  \"checkinDate\": \"2023-03-10T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-15T10:00:00.000Z\",\n  \"numberOfGuests\": 2,\n  \"totalPrice\": 150.25,\n  \"bookingStatus\": \"confirmed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings"]
+            }
+          },
+          "response": [
+            {
+              "id": "2a49b4af-c5b1-4afd-8ec4-3d4a7da0d4d4",
+              "name": "Booking created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n  \"checkinDate\": \"2023-03-10T18:00:00.000Z\",\n  \"checkoutDate\": \"2023-03-15T10:00:00.000Z\",\n  \"numberOfGuests\": 2,\n  \"totalPrice\": 150.25,\n  \"bookingStatus\": \"confirmed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "id": "96bfd29a-6586-4289-ac01-bb6bc8852834"
+    },
+    {
+      "name": "reviews",
+      "item": [
+        {
+          "name": "{reviewId}",
+          "item": [
+            {
+              "name": "Get review by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "fe92f9f7-2542-46b0-ae0b-f74a9e3bc91c",
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Response has the required fields\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData).to.be.an('object');",
+                      "    pm.expect(responseData.id).to.exist.and.to.be.a('string');",
+                      "    pm.expect(responseData.userId).to.exist.and.to.be.a('string');",
+                      "    pm.expect(responseData.propertyId).to.exist.and.to.be.a('string');",
+                      "    pm.expect(responseData.rating).to.exist.and.to.be.a('number');",
+                      "    pm.expect(responseData.comment).to.exist.and.to.be.a('string');",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Id is a non-empty string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "    ",
+                      "    pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should not be empty\");",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"userId is a non-empty string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData.userId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"propertyId is a non-empty string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "    ",
+                      "    pm.expect(responseData.propertyId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+                      "});",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "d94af9a8-426e-46e3-ac30-2f551bd2aaa9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/:reviewId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["reviews", ":reviewId"],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "j0123456-78f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "17f7ac46-6359-4d6f-8bea-93b8002e4f48",
+                  "name": "Successful retrieval of review",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"g7890123-45cd-ef01-2345-6789abcdef01\",\n  \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n  \"rating\": 5,\n  \"comment\": \"The property was amazing, and the host was very accommodating!\"\n}"
+                },
+                {
+                  "id": "9614eb95-2813-455c-8f76-a6a5a3d7a36f",
+                  "name": "Review not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Update review by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "fe3e37a8-83de-4196-aca7-8ac0031aab65",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "3c709ca2-ff1a-40c2-a0e6-9160d02b6a47",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Updated review for the property.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/:reviewId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["reviews", ":reviewId"],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "j0123456-78f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "63fa412c-3bea-40e6-9704-b5c9b29d9e0a",
+                  "name": "Review updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Updated review for the property.\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "9e026223-0bed-4bfb-b4de-59d4baf9d878",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Updated review for the property.\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "aeb9eb65-edd7-4421-b2ec-fe927c57029a",
+                  "name": "Review not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Updated review for the property.\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Delete review by ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c734b1cc-057f-48a2-bb9e-1c4507e9dbce",
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "id": "af2d6b5d-3b40-4a0f-b3c4-bf57de8f25bc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/:reviewId",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["reviews", ":reviewId"],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "j0123456-78f0-1234-5678-9abcdef01234",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "418dd70e-8f2f-4c21-823e-099e107c8f03",
+                  "name": "Review deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "id": "c0d59391-31ce-4823-b3f1-7f14fb7b6957",
+                  "name": "Review not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{bearerToken}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reviews/:reviewId",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["reviews", ":reviewId"],
+                      "variable": [
+                        {
+                          "key": "reviewId",
+                          "value": "in",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "12280a1e-bf57-4af2-a684-bba8609b076c"
+        },
+        {
+          "name": "Get all reviews",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7c4ce609-c9ec-4311-b94b-64d57fcfe023",
+                "exec": [
+                  "",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "",
+                  "",
+                  "pm.test(\"Response is an array with at least one element\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('array');",
+                  "    pm.expect(responseData).to.have.lengthOf.at.least(1);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Id is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "",
+                  "  pm.expect(responseData).to.be.an('array');",
+                  "  responseData.forEach(function (review) {",
+                  "    pm.expect(review.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"userId is a non-empty string\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+                  "  ",
+                  "  responseData.forEach(function(review) {",
+                  "    pm.expect(review.userId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"userId should not be empty\");",
+                  "  });",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"propertyId is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    responseData.forEach(function (review) {",
+                  "        pm.expect(review.propertyId).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+                  "    });",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "6d9ae07c-6cd4-404e-808a-f655b271e9d5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews"]
+            }
+          },
+          "response": [
+            {
+              "id": "15798049-e9fb-4085-89f9-aac4f6fbe87e",
+              "name": "Successful retrieval of reviews",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["reviews"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"g7890123-45cd-ef01-2345-6789abcdef01\",\n    \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n    \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n    \"rating\": 5,\n    \"comment\": \"The property was amazing, and the host was very accommodating!\"\n  },\n  {\n    \"id\": \"g7890123-45cd-ef01-2345-6789abcdef01\",\n    \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n    \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n    \"rating\": 5,\n    \"comment\": \"The property was amazing, and the host was very accommodating!\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new review",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7bec8fc4-8fde-45d5-94b1-a9973fe99aa0",
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "23128166-a5ba-472a-8ade-c88e02d5552b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n  \"rating\": 5,\n  \"comment\": \"The property was amazing, and the host was very accommodating!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews"]
+            }
+          },
+          "response": [
+            {
+              "id": "844b5729-4a7b-4e56-af71-7e2bcfaa7812",
+              "name": "Review created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{bearerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"a1234567-89ab-cdef-0123-456789abcdef\",\n  \"propertyId\": \"j2345678-90f1-2345-6789-abcdef012345\",\n  \"rating\": 5,\n  \"comment\": \"The property was amazing, and the host was very accommodating!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reviews",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["reviews"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ],
+      "id": "85363f17-c062-4151-a921-fdea3f1bef1e"
+    },
+    {
+      "name": "User Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bf097e0a-4b08-461a-9da5-80ba21f6aa50",
+            "exec": [
+              "",
+              "pm.test(\"Response status code is 200\", function () {",
+              "  pm.expect(pm.response.code).to.equal(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Response has the required field 'token'\", function () {",
+              "  const responseData = pm.response.json();",
+              "  ",
+              "  pm.expect(responseData).to.be.an('object');",
+              "  pm.expect(responseData.token).to.exist;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Token is a non-empty string\", function () {",
+              "    const responseData = pm.response.json();",
+              "    ",
+              "    pm.expect(responseData).to.be.an('object');",
+              "    pm.expect(responseData.token).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "5e7bac6f-f1b4-48f4-9dc2-05e22d1b0e08",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"jdoe\",\n  \"password\": \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["login"]
+        }
+      },
+      "response": [
+        {
+          "id": "5ca560b1-530f-4feb-a36e-62b06a726ee9",
+          "name": "Successful login",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"jdoe\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["login"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"token\": \"mytoken\"\n}"
+        },
+        {
+          "id": "ae2b9291-25bf-43a5-b938-994b09cd8691",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"jdoe\",\n  \"password\": \"password12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["login"]
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": "text",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "1ca586f7-8f3f-4609-8cea-b7fb1c98eac1",
+        "type": "text/javascript",
+        "exec": [
+          "pm.sendRequest({",
+          "    url: 'http://0.0.0.0:3000/login',",
+          "    method: 'POST',",
+          "    header: {",
+          "        'Content-Type': 'application/json'",
+          "    },",
+          "    body: {",
+          "        mode: 'raw',",
+          "        raw: JSON.stringify({",
+          "            username: 'jdoe',",
+          "            password: 'password123'",
+          "        })",
+          "    }",
+          "}, function (err, response) {",
+          "    if (err) {",
+          "        console.error('Login request failed:', err);",
+          "        return;",
+          "    }",
+          "    ",
+          "    var responseBody = JSON.parse(response.text());",
+          "    pm.environment.set('bearerToken', responseBody.token); // Assuming the token is in a 'token' property",
+          "});",
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "89457d56-a1ec-4a7a-a442-318fcc470c1a",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "3ace598b-c5ef-4a00-bc7c-1617bb431b91",
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}

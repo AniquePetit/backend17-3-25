@@ -1,0 +1,815 @@
+openapi: 3.1.0
+info:
+    title: Online Booking App API
+    version: 1.0.0
+    description: RESTful API for an online booking app using Express.js and Prisma
+servers:
+    - url: https://api.example.com/v1
+paths:
+    /login:
+        post:
+            summary: User Login
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                username:
+                                    type: string
+                                    example: johndoe
+                                password:
+                                    type: string
+                                    example: mys3cur3p@ss
+            responses:
+                "200":
+                    description: Successful login
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    token:
+                                        type: string
+                                        example: mytoken
+                "401":
+                    description: Unauthorized
+    /users:
+        get:
+            summary: Get all users
+            responses:
+                "200":
+                    description: Successful retrieval of users
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/User"
+        post:
+            summary: Create a new user
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/UserCreate"
+            responses:
+                "201":
+                    description: User created successfully
+                "400":
+                    description: Bad request
+    /users/{userId}:
+        parameters:
+            - in: path
+              name: userId
+              required: true
+              schema:
+                  type: string
+        get:
+            summary: Get user by ID
+            responses:
+                "200":
+                    description: Successful retrieval of user
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/User"
+                "404":
+                    description: User not found
+        put:
+            summary: Update user by ID
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/UserUpdate"
+            responses:
+                "200":
+                    description: User updated successfully
+                "404":
+                    description: User not found
+                "400":
+                    description: Bad request
+        delete:
+            summary: Delete user by ID
+            responses:
+                "200":
+                    description: User deleted successfully
+                "404":
+                    description: User not found
+    /hosts:
+        get:
+            summary: Get all hosts
+            responses:
+                "200":
+                    description: Successful retrieval of hosts
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Host"
+        post:
+            summary: Create a new host
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/HostCreate"
+            responses:
+                "201":
+                    description: Host created successfully
+                "400":
+                    description: Bad request
+    /hosts/{hostId}:
+        parameters:
+            - in: path
+              name: hostId
+              required: true
+              schema:
+                  type: string
+        get:
+            summary: Get host by ID
+            responses:
+                "200":
+                    description: Successful retrieval of host
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Host"
+                "404":
+                    description: Host not found
+        put:
+            summary: Update host by ID
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/HostUpdate"
+            responses:
+                "200":
+                    description: Host updated successfully
+                "404":
+                    description: Host not found
+                "400":
+                    description: Bad request
+        delete:
+            summary: Delete host by ID
+            responses:
+                "200":
+                    description: Host deleted successfully
+                "404":
+                    description: Host not found
+    /properties:
+        get:
+            summary: Get all properties
+            responses:
+                "200":
+                    description: Successful retrieval of properties
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Property"
+        post:
+            summary: Create a new property
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/PropertyCreate"
+            responses:
+                "201":
+                    description: Property created successfully
+                "400":
+                    description: Bad request
+    /properties/{propertyId}:
+        parameters:
+            - in: path
+              name: propertyId
+              required: true
+              schema:
+                  type: string
+        get:
+            summary: Get property by ID
+            responses:
+                "200":
+                    description: Successful retrieval of property
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Property"
+                "404":
+                    description: Property not found
+        put:
+            summary: Update property by ID
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/PropertyUpdate"
+            responses:
+                "200":
+                    description: Property updated successfully
+                "404":
+                    description: Property not found
+                "400":
+                    description: Bad request
+        delete:
+            summary: Delete property by ID
+            responses:
+                "200":
+                    description: Property deleted successfully
+                "404":
+                    description: Property not found
+    /amenities:
+        get:
+            summary: Get all amenities
+            responses:
+                "200":
+                    description: Successful retrieval of amenities
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Amenity"
+        post:
+            summary: Create a new amenity
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/AmenityCreate"
+            responses:
+                "201":
+                    description: Amenity created successfully
+                "400":
+                    description: Bad request
+    /amenities/{amenityId}:
+        parameters:
+            - in: path
+              name: amenityId
+              required: true
+              schema:
+                  type: string
+        get:
+            summary: Get amenity by ID
+            responses:
+                "200":
+                    description: Successful retrieval of amenity
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Amenity"
+                "404":
+                    description: Amenity not found
+        put:
+            summary: Update amenity by ID
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/AmenityUpdate"
+            responses:
+                "200":
+                    description: Amenity updated successfully
+                "404":
+                    description: Amenity not found
+                "400":
+                    description: Bad request
+        delete:
+            summary: Delete amenity by ID
+            responses:
+                "200":
+                    description: Amenity deleted successfully
+                "404":
+                    description: Amenity not found
+    /bookings:
+        get:
+            summary: Get all bookings
+            responses:
+                "200":
+                    description: Successful retrieval of bookings
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Booking"
+        post:
+            summary: Create a new booking
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/BookingCreate"
+            responses:
+                "201":
+                    description: Booking created successfully
+                "400":
+                    description: Bad request
+    /bookings/{bookingId}:
+        parameters:
+            - in: path
+              name: bookingId
+              required: true
+              schema:
+                  type: string
+        get:
+            summary: Get booking by ID
+            responses:
+                "200":
+                    description: Successful retrieval of booking
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Booking"
+                "404":
+                    description: Booking not found
+        put:
+            summary: Update booking by ID
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/BookingUpdate"
+            responses:
+                "200":
+                    description: Booking updated successfully
+                "404":
+                    description: Booking not found
+                "400":
+                    description: Bad request
+        delete:
+            summary: Delete booking by ID
+            responses:
+                "200":
+                    description: Booking deleted successfully
+                "404":
+                    description: Booking not found
+    /reviews:
+        get:
+            summary: Get all reviews
+            responses:
+                "200":
+                    description: Successful retrieval of reviews
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Review"
+        post:
+            summary: Create a new review
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/ReviewCreate"
+            responses:
+                "201":
+                    description: Review created successfully
+                "400":
+                    description: Bad request
+    /reviews/{reviewId}:
+        parameters:
+            - in: path
+              name: reviewId
+              required: true
+              schema:
+                  type: string
+        get:
+            summary: Get review by ID
+            responses:
+                "200":
+                    description: Successful retrieval of review
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Review"
+                "404":
+                    description: Review not found
+        put:
+            summary: Update review by ID
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/ReviewUpdate"
+            responses:
+                "200":
+                    description: Review updated successfully
+                "404":
+                    description: Review not found
+                "400":
+                    description: Bad request
+        delete:
+            summary: Delete review by ID
+            responses:
+                "200":
+                    description: Review deleted successfully
+                "404":
+                    description: Review not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "a1234567-89ab-cdef-0123-456789abcdef"
+        username:
+          type: string
+          example: "jdoe"
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          example: "johndoe@example.com"
+        phoneNumber:
+          type: string
+          example: "123-456-7890"
+        profilePicture:
+          type: string
+          example: "https://example.com/images/johndoe.jpg"
+
+    Host:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "f1234567-89ab-cdef-0123-456789abcdef"
+        username:
+          type: string
+          example: "johnDoe"
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          example: "johndoe@email.com"
+        phoneNumber:
+          type: string
+          example: "+11234567890"
+        profilePicture:
+          type: string
+          example: "https://example.com/images/johndoe.jpg"
+        aboutMe:
+          type: string
+          example: "I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!"
+
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "g9012345-67ef-0123-4567-89abcdef0123"
+        title:
+          type: string
+          example: "Cozy Mountain Retreat"
+        description:
+          type: string
+          example: "Experience tranquility in our cozy cabin situated on a serene mountain peak."
+        location:
+          type: string
+          example: "Rocky Mountains, Colorado"
+        pricePerNight:
+          type: number
+          example: 120.5
+        bedroomCount:
+          type: integer
+          example: 3
+        bathRoomCount:
+          type: integer
+          example: 2
+        maxGuestCount:
+          type: integer
+          example: 5
+        hostId:
+          type: string
+          example: "f1234567-89ab-cdef-0123-456789abcdef"
+        rating:
+          type: number
+          example: 5
+
+    Amenity:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "l4567890-12gh-ijkl-1234-56789abcdef0"
+        name:
+          type: string
+          example: "Wifi"
+
+    Booking:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "f0123456-78ab-cdef-0123-456789abcdef"
+        userId:
+          type: string
+          example: "a1234567-89ab-cdef-0123-456789abcdef"
+        propertyId:
+          type: string
+          example: "z9876543-21fe-dcba-1098-76543210dcba"
+        checkinDate:
+          type: string
+          format: date-time
+          example: "2023-03-10T18:00:00.000Z"
+        checkoutDate:
+          type: string
+          format: date-time
+          example: "2023-03-15T10:00:00.000Z"
+        numberOfGuests:
+          type: integer
+          example: 2
+        totalPrice:
+          type: number
+          example: 150.25
+        bookingStatus:
+          type: string
+          example: "confirmed"
+
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "g7890123-45cd-ef01-2345-6789abcdef01"
+        userId:
+          type: string
+          example: "a1234567-89ab-cdef-0123-456789abcdef"
+        propertyId:
+          type: string
+          example: "z0123456-78ab-cdef-9012-3456789abcdef"
+        rating:
+          type: number
+          example: 5
+        comment:
+          type: string
+          example: "The property was amazing, and the host was very accommodating!"
+    UserCreate:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "jdoe"
+        password:
+          type: string
+          example: "password123"
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          example: "johndoe@example.com"
+        phoneNumber:
+          type: string
+          example: "123-456-7890"
+        profilePicture:
+          type: string
+          example: "https://global-uploads.webflow.com/5eecfecbe625d195e35b89f2/624bfb093da7d92733c001c0_Ignacio%20Villafruela%20Rodr%C3%ADguez.jpg"
+      required:
+        - username
+        - password
+        - name
+        - email
+        - phoneNumber
+
+    UserUpdate:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "jdoe_updated"
+        name:
+          type: string
+          example: "John Doe Updated"
+        email:
+          type: string
+          example: "updatedjohndoe@example.com"
+        phoneNumber:
+          type: string
+          example: "987-654-3210"
+        profilePicture:
+          type: string
+          example: "https://updated-example.com/images/johndoe.jpg"
+
+    HostCreate:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "johnDoe"
+        password:
+          type: string
+          example: "johnDoe123"
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          example: "johndoe@email.com"
+        phoneNumber:
+          type: string
+          example: "+11234567890"
+        profilePicture:
+          type: string
+          example: "https://example.com/images/johndoe.jpg"
+        aboutMe:
+          type: string
+          example: "I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!"
+      required:
+        - username
+        - password
+        - name
+        - email
+        - phoneNumber
+
+    HostUpdate:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "johnDoe_updated"
+        name:
+          type: string
+          example: "John Doe Updated"
+        email:
+          type: string
+          example: "updatedjohndoe@email.com"
+        phoneNumber:
+          type: string
+          example: "+11234567890"
+        profilePicture:
+          type: string
+          example: "https://updated-example.com/images/johndoe.jpg"
+        aboutMe:
+          type: string
+          example: "Updated bio for John Doe"
+
+    PropertyCreate:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Cozy Mountain Retreat"
+        description:
+          type: string
+          example: "Experience tranquility in our cozy cabin situated on a serene mountain peak."
+        location:
+          type: string
+          example: "Rocky Mountains, Colorado"
+        pricePerNight:
+          type: number
+          example: 120.5
+        bedroomCount:
+          type: integer
+          example: 3
+        bathRoomCount:
+          type: integer
+          example: 2
+        maxGuestCount:
+          type: integer
+          example: 5
+        hostId:
+          type: string
+          example: "f1234567-89ab-cdef-0123-456789abcdef"
+        rating:
+          type: number
+          example: 5
+
+    PropertyUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Updated Cozy Mountain Retreat"
+        description:
+          type: string
+          example: "Updated description for the cozy mountain retreat."
+        location:
+          type: string
+          example: "Updated Location"
+        pricePerNight:
+          type: number
+          example: 150.5
+        bedroomCount:
+          type: integer
+          example: 4
+        bathRoomCount:
+          type: integer
+          example: 3
+        maxGuestCount:
+          type: integer
+          example: 6
+        rating:
+          type: number
+          example: 4.5
+
+    AmenityCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Wifi"
+
+    AmenityUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Updated Wifi"
+
+    ReviewCreate:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "a1234567-89ab-cdef-0123-456789abcdef"
+        propertyId:
+          type: string
+          example: "z0123456-78ab-cdef-9012-3456789abcdef"
+        rating:
+          type: number
+          example: 5
+        comment:
+          type: string
+          example: "The property was amazing, and the host was very accommodating!"
+
+    ReviewUpdate:
+      type: object
+      properties:
+        rating:
+          type: number
+          example: 4
+        comment:
+          type: string
+          example: "Updated review for the property."
+      
+    BookingCreate:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "a1234567-89ab-cdef-0123-456789abcdef"
+        propertyId:
+          type: string
+          example: "z9876543-21fe-dcba-1098-76543210dcba"
+        checkinDate:
+          type: string
+          format: date-time
+          example: "2023-03-10T18:00:00.000Z"
+        checkoutDate:
+          type: string
+          format: date-time
+          example: "2023-03-15T10:00:00.000Z"
+        numberOfGuests:
+          type: integer
+          example: 2
+        totalPrice:
+          type: number
+          example: 150.25
+        bookingStatus:
+          type: string
+          example: "confirmed"
+
+    BookingUpdate:
+      type: object
+      properties:
+        checkinDate:
+          type: string
+          format: date-time
+          example: "2023-03-11T18:00:00.000Z"
+        checkoutDate:
+          type: string
+          format: date-time
+          example: "2023-03-16T10:00:00.000Z"
+        numberOfGuests:
+          type: integer
+          example: 3
+        totalPrice:
+          type: number
+          example: 200.75
+        bookingStatus:
+          type: string
+          example: "updated"
+

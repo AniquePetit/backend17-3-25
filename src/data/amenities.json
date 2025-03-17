@@ -1,0 +1,44 @@
+{
+  "amenities": [
+    {
+      "id": "l4567890-12gh-ijkl-1234-56789abcdef0",
+      "name": "Wifi"
+    },
+    {
+      "id": "m5678901-23ij-klmn-2345-6789abcdef01",
+      "name": "Gym"
+    },
+    {
+      "id": "n6789012-34kl-mnop-3456-789abcdef012",
+      "name": "Pool"
+    },
+    {
+      "id": "o7890123-45lm-nopq-4567-89abcdef0123",
+      "name": "Kitchen"
+    },
+    {
+      "id": "p8901234-56mn-opqr-5678-9abcdef01234",
+      "name": "Air Conditioning"
+    },
+    {
+      "id": "q9012345-67no-pqrs-6789-abcdef012345",
+      "name": "Heating"
+    },
+    {
+      "id": "r0123456-78op-qrst-789a-bcdef0123456",
+      "name": "Washer"
+    },
+    {
+      "id": "s1234567-89pq-rstu-89ab-cdef01234567",
+      "name": "Dryer"
+    },
+    {
+      "id": "t2345678-90qr-stuv-90bc-def012345678",
+      "name": "TV"
+    },
+    {
+      "id": "u3456789-01rs-tuvw-01cd-ef0123456789",
+      "name": "Free Parking"
+    }
+  ]
+}

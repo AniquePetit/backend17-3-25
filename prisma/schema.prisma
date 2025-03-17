@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(uuid())
+  username       String    @unique
+  password       String
+  name           String
+  email          String
+  phoneNumber    String
+  profilePicture String?
+  pictureUrl     String?
+  refreshToken   String?
+  bookings       Booking[] @relation("UserBookings")
+  reviews        Review[]  @relation("UserReviews")
+}
+
+model Host {
+  id             String     @id @default(cuid())
+  username       String     @unique
+  password       String
+  name           String
+  email          String
+  phoneNumber    String
+  profilePicture String?
+  aboutMe        String?
+  listings       Property[] @relation("HostProperties")
+}
+
+model Property {
+  id            String    @id @default(uuid())
+  hostId        String
+  title         String
+  description   String
+  location      String
+  pricePerNight Float
+  bedroomCount  Int
+  bathRoomCount Int
+  maxGuestCount Int
+  rating        Int
+  bookings      Booking[] @relation("PropertyBookings")
+  host          Host      @relation("HostProperties", fields: [hostId], references: [id], onDelete: Cascade)
+  reviews       Review[]  @relation("PropertyReviews")
+  amenities     Amenity[] @relation("PropertyAmenities")
+}
+
+model Booking {
+  id             String   @id @default(uuid())
+  userId         String
+  propertyId     String
+  checkinDate    DateTime
+  checkoutDate   DateTime
+  numberOfGuests Int
+  totalPrice     Int
+  bookingStatus  String
+  property       Property @relation("PropertyBookings", fields: [propertyId], references: [id], onDelete: Cascade)
+  user           User     @relation("UserBookings", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Amenity {
+  id         String     @id @default(uuid())
+  name       String
+  properties Property[] @relation("PropertyAmenities")
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  userId     String
+  propertyId String
+  rating     Int
+  comment    String
+  property   Property @relation("PropertyReviews", fields: [propertyId], references: [id], onDelete: Cascade)
+  user       User     @relation("UserReviews", fields: [userId], references: [id], onDelete: Cascade)
+}
